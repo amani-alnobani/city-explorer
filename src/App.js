@@ -39,11 +39,13 @@ export class App extends Component {
           <input type="text" onChange={this.handelLocationNameChange} placeholder="enter city name" />
           <input type="submit" value="Explorer!" />
         </form>
-        <h2>Location Info</h2>
-        <p>{this.state.theLocationData.display_name}</p>
-        <p>lat: {this.state.theLocationData.lat}</p>
-        <p>lon: {this.state.theLocationData.lon}</p>
-        <img src={`https://maps.locationiq.com/v3/ataticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${this.state.theLocationData.lat},${this.state.theLocationData.lon}&zoom=1-18`} alt="" />
+        <div>
+        <h2 style={{color:"darkcyan" , margin:"20px 20px 20px 20px"}}>Location Info</h2>
+        <p style={{color:"darkgoldenrod", margin:"20px 20px 20px 20px"}}>{this.state.theLocationData.display_name}</p>
+        <p style={{color:"darkgoldenrod", margin:"20px 20px 20px 20px"}}>lat: {this.state.theLocationData.lat}</p>
+        <p style={{color:"darkgoldenrod", margin:"20px 20px 20px 20px"}}>lon: {this.state.theLocationData.lon}</p>
+        <img style={{margin:"20px 20px 20px 20px"}} src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${this.state.theLocationData.lat},${this.state.theLocationData.lon}&zoom=1-18`} alt="" />
+      </div>
       </div>
     )
   }
