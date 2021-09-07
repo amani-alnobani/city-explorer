@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card'
 
 
 export class App extends Component {
@@ -15,7 +16,8 @@ export class App extends Component {
       theLocationData: {},
       showMap: false,
       showAlert: false,
-      errMessage: ''
+      errMessage: '',
+      listOfWeather: []
     }
   }
 
@@ -25,14 +27,19 @@ export class App extends Component {
     e.preventDefault();
     try {
 
-      const url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${this.state.locationName}&format=json`;
+      let url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${this.state.locationName}&format=json`;
 
-      const responseOperation = await axios.get(url);
+      let serverUrl = `${process.env.REACT_APP_SERVER_URL}/weather?city_name=${this.state.locationName}`;
+
+      let responseOperation = await axios.get(url);
+      let serverRespose = await axios.get(serverUrl);
+
       this.setState({
         theLocationData: responseOperation.data[0],
         showMap: true,
         showAlert: false,
-        errMessage: ''
+        errMessage: '',
+        listOfWeather: serverResponse.data
       });
     }
     catch (err) {
@@ -52,6 +59,9 @@ export class App extends Component {
       margin: "20px"
     }
 
+    let newArr = this.state.listOfWeather.map(item => {
+      return (<p>{item.date} : {item.description} </p>)
+    })
 
     return (
       <div>
@@ -77,6 +87,7 @@ export class App extends Component {
             <p style={{ color: "darkgoldenrod", margin: "20px 20px 20px 20px" }}>lat: {this.state.theLocationData.lat}</p>
             <p style={{ color: "darkgoldenrod", margin: "20px 20px 20px 20px" }}>lon: {this.state.theLocationData.lon}</p>
             <img style={{ margin: "20px 20px 20px 20px" }} src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${this.state.theLocationData.lat},${this.state.theLocationData.lon}&zoom=18`} alt="" />
+            <Card.text>the wether cast: {newArr}</Card.text>
           </div>
         }
       </div>
