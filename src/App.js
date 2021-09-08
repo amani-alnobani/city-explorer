@@ -29,9 +29,8 @@ export class App extends Component {
       let url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${this.state.locationName}&format=json`;
 
       let serverUrl = `${process.env.REACT_APP_SERVER_URL}/weather?city_name=${this.state.locationName}`;
-
       let responseOperation = await axios.get(url);
-      let serverRespose = await axios.get(serverUrl);
+      let = await axios.get(serverUrl);
 
       this.setState({
         theLocationData: responseOperation.data[0],
