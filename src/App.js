@@ -30,13 +30,12 @@ export class App extends Component {
     try {
       let url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${this.state.locationName}&format=json`;
 
-      let serverUrl = `${process.env.REACT_APP_SERVER_URL}/weather?city_name=${this.state.locationName}`;
-      const movieUrl = `${process.env.REACT_APP_SERVER_URL}/movies?query=${this.state.nameOflocation}`;
-
+      let serverUrl = `${process.env.REACT_APP_SERVER_URL}/weathers?city=${this.state.locationName}`;
+      const movieUrl = `${process.env.REACT_APP_SERVER_URL}/movies?query=${this.state.locationName}`;
+      
       let responseOperation = await axios.get(url);
       let serverRespose = await axios.get(serverUrl);
       let movieResponse = await axios.get(movieUrl);
-
       this.setState({
         theLocationData: responseOperation.data[0],
         showMap: true,
@@ -45,6 +44,7 @@ export class App extends Component {
         listOfWeather: serverRespose.data,
         listOfMovie: movieResponse.data
       });
+      console.log('hello world');
     }
     catch (err) {
       this.setState({
@@ -99,19 +99,19 @@ export class App extends Component {
             <p>the wether cast: {wetherArr}</p>
             <p>the movie: {movieArr}</p>
             <>
-            <Card style={{ width: '18rem' },{margin:'18rem'}}>
-              <Card.Img variant="top" src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&center=${this.props.nameOflocation.lat},${this.props.nameOflocation.lon}&zoom=1-18`} />
-              <Card.Body>
-                <Card.Title style={{backgroundColor:'red'}}>{this.props.nameOflocation.display_name}</Card.Title>
-                <Card.Text>
-                the wether cast: :{wetherArr}
-                </Card.Text>
-                <Card.Text>
-                the movie: :{movieArr}
-                </Card.Text>
+              <Card style={{ width: '18rem' }}>
+                <Card.Img variant="top" src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&center=${this.props.nameOflocation.lat},${this.props.nameOflocation.lon}&zoom=1-18`} />
+                <Card.Body>
+                  <Card.Title style={{ backgroundColor: 'red' }}>{this.props.nameOflocation.display_name}</Card.Title>
+                  <Card.Text>
+                    the wether cast: :{wetherArr}
+                  </Card.Text>
+                  <Card.Text>
+                    the movie: :{movieArr}
+                  </Card.Text>
                 </Card.Body>
-                </Card>
-                </>
+              </Card>
+            </>
           </div>
         }
       </div>
