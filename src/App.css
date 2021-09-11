@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+body {
+ background-image: url("https://wallpaperaccess.com/full/3949076.jpg");
+ background-color: #cccccc;
+  color: white;
+  padding: 40px;
+  font-family: Arial;
+  text-align: center;
+}
+
+.card {
+  margin-left: 150px;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black
+}
