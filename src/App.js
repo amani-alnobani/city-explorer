@@ -122,7 +122,7 @@ export class App extends Component {
             <img style={{ margin: "20px 20px 20px 20px" }} src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&center=${this.state.theLocationData.lat},${this.state.theLocationData.lon}&zoom=1-18`} alt="" />
             {/* <p>the wether cast: {wetherArr}</p>
               <p>the movie: {movieArr}</p> */}
-            <Card class="card" bg="primary" text="white" style={{ width: '35rem' }}>
+            <Card class="card" bg="primary" text="white" style={{ width: '40rem' }}>
               <Card.Body>
               <Card.Title>the wether cast:</Card.Title>
                 <Card.Text>{wetherArr}</Card.Text>
