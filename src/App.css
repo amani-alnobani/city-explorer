@@ -49,5 +49,6 @@ body {
   margin-left: 150px;
   align-items: center;
   justify-content: center;
-  border: 5px solid black
+  border: 5px solid black;
+  border-radius: 10%
 }
